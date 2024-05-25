@@ -18,8 +18,8 @@ const Navbar = () => {
     };
   
     const options = [
-      {option: "Home",nav : '/'},
-      {option: "Courses",nav : '/my-course'},
+      {option: "Home",nav : '/home'},
+      {option: "Courses",nav : '/courses'},
     ];
   return (
     <>
