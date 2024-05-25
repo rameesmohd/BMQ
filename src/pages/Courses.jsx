@@ -72,12 +72,12 @@ const Courses = () => {
             >
               <div className="text-2xl my-2 font-bold">Ultimate Trading Mastery</div>
               <div className="text-xl font-semibold">Basic to Advanced Level Learning</div>
-              <ul className="list-disc pl-5">
-                <li className="my-1 border p-1">Total Hours: 12 Hours</li>
+              <ul className="">
+                <li className="my-1 border p-1">Total Hours: 16 Hours</li>
                 <li className="my-1 border p-1 flex justify-between">
-                  One Live session <Checkbox checked={supportCheck} onChange={handleCheckboxChange} />
+                  2 Live session (4 Hours)<Checkbox checked={supportCheck} onChange={handleCheckboxChange} />
                 </li>
-                <li className="my-1 border p-1">Sessions-Pre-Recorded videos</li>
+                <li className="my-1 border p-1">Sessions-Pre-Recorded videos (12 Hours)</li>
                 <li className="my-1 border p-1">2 Month Access</li>
                 <li className="my-1 border p-1 flex justify-between">
                   24 Hours Support <Checkbox checked={supportCheck} onChange={handleCheckboxChange} />
