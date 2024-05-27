@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import Navbar from '../components/User/Navbar'
-import coverpic from '../assets/Screenshot (210).png'
+import Navbar from '../../Components/User/Navbar'
 import { Button, Card, Checkbox } from 'antd'
-import Meta from 'antd/es/card/Meta'
-import Footer from '../components/User/Footer'
+import Footer from '../../Components/User/Footer'
 import { RightCircleOutlined } from '@ant-design/icons'
-
+import userAxios from '../../Axios/Useraxios'
+import toast from 'react-hot-toast'
+import Modal from '../../Components/User/PurchaseModal'
+ 
 const ListSection = ({ title, items }) => (
     <div>
       <div className="text-3xl my-3 font-semibold">{title}</div>
@@ -17,35 +18,86 @@ const ListSection = ({ title, items }) => (
         ))}
       </div>
     </div>
-  );
-  
+);
+
+const whatYouWillLearn = [
+  "Introduction to Trading Fundamentals",
+  "Indicators Deep Dive",
+  "Liquidity Dynamics",
+  "Market Structure Analysis",
+  "Insights into Market Makers",
+  "ICT Concepts",
+  "Market Maker Methods"
+];
+
+const skillsYouWillAchieve = [
+  "Trading in different currency pairs",
+  "Forex analysis",
+  "Technical analysis currency pairs",
+  "Fundamental analysis",
+  "Trading mindset",
+  "Liquidity analysis"
+];
 
 const Courses = () => {
-    const [supportCheck,setsupportCheck] = useState(true)
-    console.log(supportCheck);
-    const whatYouWillLearn = [
-        "Introduction to Trading Fundamentals",
-        "Indicators Deep Dive",
-        "Liquidity Dynamics",
-        "Market Structure Analysis",
-        "Insights into Market Makers",
-        "ICT Concepts",
-        "Market Maker Methods"
-      ];
-      const skillsYouWillAchieve = [
-        "Trading in different currency pairs",
-        "Forex analysis",
-        "Technical analysis currency pairs",
-        "Fundamental analysis",
-        "Trading mindset",
-        "Liquidity analysis"
-      ];
+    const [isModalOpen,setIsModalOpen]= useState(false)
+    const [loading,setLoading] = useState(false)
+    const axiosInstance = userAxios()
+    const [formData,setFormData]= useState({
+      email: '', 
+      mobile : '', 
+      amount : 0, 
+      course : '', 
+      support : 'true',
+      firstName : '',
+      lastName : ''
+    })
 
-      const handleCheckboxChange  = (e) => {
-        setsupportCheck(!supportCheck)
-      };
-      
+    const handleCheckboxChange  = (e) => {
+      setFormData({...formData , support : !formData.support})
+    };
 
+    const LoadPhonepe=async()=>{
+        // await axiosInstance.post(`/phonepe/payment`,{
+        //       data : formData
+        // }).then((response)=>{
+        //   console.log(response.data , 'response');
+        //   window.location.href = response.data
+        // }).catch((error)=>{
+        //   console.log(error);
+        //   toast.error(error.message)
+        // })
+        await axiosInstance.post('/phonepe/payment',{data : formData})
+        .then((res)=>{
+          toast.success('Purchase completed')
+          
+          console.log(res)
+        }
+        ).catch((error)=>toast.error(error))        
+      }
+
+    const handleSubmit=async({course,amount})=>{
+        setLoading(true)
+        if(course === 'live-mentorship'){
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            support: 'true',
+            course,
+            amount
+          }));
+        }else {
+          setFormData({ ...formData, amount,course});
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            course,
+            amount
+          }));
+        }
+        setTimeout(()=>{
+          setLoading(false)
+          setIsModalOpen(!isModalOpen)
+        },1000)
+      }
   return (
     <>
       <Navbar />
@@ -75,19 +127,19 @@ const Courses = () => {
               <ul className="">
                 <li className="my-1 border p-1">Total Hours: 16 Hours</li>
                 <li className="my-1 border p-1 flex justify-between">
-                  2 Live session (4 Hours)<Checkbox checked={supportCheck} onChange={handleCheckboxChange} />
+                  2 Live session (4 Hours)<Checkbox checked={formData.support} onChange={handleCheckboxChange} />
                 </li>
                 <li className="my-1 border p-1">Sessions-Pre-Recorded videos (12 Hours)</li>
                 <li className="my-1 border p-1">2 Month Access</li>
                 <li className="my-1 border p-1 flex justify-between">
-                  24 Hours Support <Checkbox checked={supportCheck} onChange={handleCheckboxChange} />
+                  24 Hours Support <Checkbox checked={formData.support} onChange={handleCheckboxChange} />
                 </li>
               </ul>
               <hr />
               <div className="flex items-center space-x-2">
-                <div className="text-red-600 font-bold line-through">{supportCheck ? '$319' : '$199'}</div>
-                <div className="text-green-600 font-bold text-2xl">{supportCheck ? '$249' : '$149'}</div>
-                <Button icon={<RightCircleOutlined />} className="my-2 border border-green-400">Join now</Button>
+                <div className="text-red-600 font-bold line-through">{formData.support ? '$319' : '$199'}</div>
+                <div className="text-green-600 font-bold text-2xl">{formData.support ? '$249' : '$149'}</div>
+                <Button loading={loading} onClick={()=>handleSubmit({course: 'pre-recorded',amount : formData.support ? '$249' : '$149'})} icon={<RightCircleOutlined />} className="my-2 border border-green-400">Join now</Button>
               </div>
             </Card>
           </div>
@@ -114,8 +166,8 @@ const Courses = () => {
       </div>
 
       <section
-        className="container grid grid-cols-2 mx-auto p-10"
-        style={{ backgroundImage: 'url("https://fundednext.fra1.cdn.digitaloceanspaces.com/cta-btn-bg.webp")', backgroundSize: '100%' }}
+        className="container grid grid-cols-2 mx-auto p-10 bg-green-100 border"
+        // style={{ backgroundImage: 'url("https://fundednext.fra1.cdn.digitaloceanspaces.com/cta-btn-bg.webp")', backgroundSize: '100%' }}
       >
         <div>
           <div className="text-3xl font-extrabold text-black my-2">ELITE TRADERS MENTORSHIP PROGRAM</div>
@@ -129,7 +181,7 @@ const Courses = () => {
         </div>
         <div className="p-10">
           <div className="text-3xl font-bold">
-            Beat Market Edu's <br />
+            Beat Market Edu's <br/>
             Elite Traders Live Mentorship Program
           </div>
           <br />
@@ -147,7 +199,7 @@ const Courses = () => {
                 <li>Weekly Live Sessions</li>
                 <li>Access to Premium Community</li>
                 <li>Extra 6 Month Assistance</li>
-                <li>Sessions-Pre-Recorded Videos</li>
+                <li>Sessions-Pre-Recorded Videos(Lifetime Access)</li>
                 <li>24 Hours Support</li>
               </ul>
             </div>
@@ -155,16 +207,18 @@ const Courses = () => {
           <div className="flex justify-between">
             <div className="flex items-center space-x-2">
               <div className="text-red-600 font-bold line-through">$539</div>
-              <div className="text-white font-bold text-2xl">$479</div>
+              <div className="font-bold text-2xl">$479</div>
             </div>
             <div className="text-xl font-semibold my-2">Limited seats only!!</div>
-            <Button icon={<RightCircleOutlined />} className="my-2 border border-green-400">Purchase and Join Now</Button>
+            <Button onClick={()=>handleSubmit({course: 'live-mentorship',amount:'$479'})} icon={<RightCircleOutlined />} className="my-2 border border-green-400">Purchase and Join Now</Button>
           </div>
         </div>
       </section>
-
       <section className="my-10"></section>
-      <Footer />
+      <Footer/>
+      {isModalOpen && <Modal 
+      isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} 
+      formData={formData} setFormData={setFormData} LoadPhonepe={LoadPhonepe}/>}
     </>
   )
 }

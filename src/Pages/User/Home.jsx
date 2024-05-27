@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../components/User/Navbar'
+import Navbar from '../../Components/User/Navbar'
 import { Button } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
-import imageSection1 from '../assets/3-Month-Journey-.png'
-import Collapse from '../components/Common/Collapase'
-import Footer from '../components/User/Footer'
+import imageSection1 from '../../assets/3-Month-Journey-.png'
+import Collapse from '../../Components/Common/Collapase'
+import Footer from '../../Components/User/Footer'
 
 const Home = () => {
   const whatYouWillLearn = [
