@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import Navbar from '../../Components/User/Navbar'
-import { Button, Card, Checkbox } from 'antd'
+import { Button, Card, Checkbox ,notification,message} from 'antd'
 import Footer from '../../Components/User/Footer'
-import { RightCircleOutlined } from '@ant-design/icons'
+import { RightCircleOutlined, SmileOutlined } from '@ant-design/icons'
 import userAxios from '../../Axios/Useraxios'
 import toast from 'react-hot-toast'
 import Modal from '../../Components/User/PurchaseModal'
+import { setUser } from '../../Redux/UserSlice'
  
 const ListSection = ({ title, items }) => (
     <div>
@@ -41,7 +42,7 @@ const skillsYouWillAchieve = [
 
 const Courses = () => {
     const [isModalOpen,setIsModalOpen]= useState(false)
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState({one : false,two: false})
     const axiosInstance = userAxios()
     const [formData,setFormData]= useState({
       email: '', 
@@ -50,35 +51,40 @@ const Courses = () => {
       course : '', 
       support : 'true',
       firstName : '',
-      lastName : ''
+      lastName : '',
+      payment_method : '',
+      uploadedFile : []
     })
-
+    
+    const [api, contextHolder] = notification.useNotification();
+    const openNotification = () => {
+      api.open({
+        message: 'Success' ,
+        duration: 0,
+        description: 'Please check your mail for the status.',
+        icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+      });
+    };
+    
     const handleCheckboxChange  = (e) => {
       setFormData({...formData , support : !formData.support})
     };
 
-    const LoadPhonepe=async()=>{
-        // await axiosInstance.post(`/phonepe/payment`,{
-        //       data : formData
-        // }).then((response)=>{
-        //   console.log(response.data , 'response');
-        //   window.location.href = response.data
-        // }).catch((error)=>{
-        //   console.log(error);
-        //   toast.error(error.message)
-        // })
-        await axiosInstance.post('/phonepe/payment',{data : formData})
-        .then((res)=>{
+    const submitPurchase=async()=>{
+        await axiosInstance.post('/purchase',formData, 
+        { headers: { 'Content-Type':'multipart/form-data' }}
+        ).then((res)=>{
           toast.success('Purchase completed')
-          
-          console.log(res)
+          openNotification()
+          setIsModalOpen(false)
         }
-        ).catch((error)=>toast.error(error))        
+        ).catch((error)=> {toast.error(error.message)
+        console.error('API Error:', error)})        
       }
 
     const handleSubmit=async({course,amount})=>{
-        setLoading(true)
-        if(course === 'live-mentorship'){
+      if(course === 'live-mentorship'){
+          setLoading({...loading,two : true})
           setFormData((prevFormData) => ({
             ...prevFormData,
             support: 'true',
@@ -86,6 +92,7 @@ const Courses = () => {
             amount
           }));
         }else {
+          setLoading({...loading,one : true})
           setFormData({ ...formData, amount,course});
           setFormData((prevFormData) => ({
             ...prevFormData,
@@ -94,10 +101,11 @@ const Courses = () => {
           }));
         }
         setTimeout(()=>{
-          setLoading(false)
+          setLoading({one : false,two : false})
           setIsModalOpen(!isModalOpen)
         },1000)
       }
+
   return (
     <>
       <Navbar />
@@ -125,21 +133,26 @@ const Courses = () => {
               <div className="text-2xl my-2 font-bold">Ultimate Trading Mastery</div>
               <div className="text-xl font-semibold">Basic to Advanced Level Learning</div>
               <ul className="">
-                <li className="my-1 border p-1">Total Hours: 16 Hours</li>
-                <li className="my-1 border p-1 flex justify-between">
+                <li className="my-1 border p-2 ">Total Hours: 16 Hours</li>
+                <li className="my-1 border p-2">Sessions-Pre-Recorded videos (12 Hours)</li>
+                <li className="my-1 border p-2">3 Month Access</li>
+                <li className="my-1 border p-2">Daily Analysis Broadcast</li>
+                {/* <li className="my-1 border p-2 flex justify-between">
                   2 Live session (4 Hours)<Checkbox checked={formData.support} onChange={handleCheckboxChange} />
-                </li>
-                <li className="my-1 border p-1">Sessions-Pre-Recorded videos (12 Hours)</li>
-                <li className="my-1 border p-1">2 Month Access</li>
-                <li className="my-1 border p-1 flex justify-between">
+                </li> */}
+                <li className="my-1 border p-2 flex justify-between">
                   24 Hours Support <Checkbox checked={formData.support} onChange={handleCheckboxChange} />
                 </li>
               </ul>
               <hr />
               <div className="flex items-center space-x-2">
-                <div className="text-red-600 font-bold line-through">{formData.support ? '$319' : '$199'}</div>
-                <div className="text-green-600 font-bold text-2xl">{formData.support ? '$249' : '$149'}</div>
-                <Button loading={loading} onClick={()=>handleSubmit({course: 'pre-recorded',amount : formData.support ? '$249' : '$149'})} icon={<RightCircleOutlined />} className="my-2 border border-green-400">Join now</Button>
+                <div className="text-red-600 font-bold line-through">${formData.support ? 319 : 199}</div>
+                <div className="text-green-600 font-bold text-2xl">${formData.support ? 249 : 149}</div>
+                <Button loading={loading.one} onClick={()=>handleSubmit({course: 'pre-recorded',amount : formData.support ? 249 : 149})} icon={<RightCircleOutlined />} className="my-2 border border-green-400">Join now</Button>
+                {/* {formData.support ? 
+                <Button onClick={()=>window.location.href = 'https://rzp.io/l/GDdf1l9R'}>Join now</Button> :
+                <Button onClick={()=>window.location.href = 'https://rzp.io/l/v13RlVhmVX'}>Join now</Button>
+                } */}
               </div>
             </Card>
           </div>
@@ -194,11 +207,11 @@ const Courses = () => {
           <div className="my-2 bg-opacity-20 backdrop-blur-lg bg-white/10 p-6 rounded-md">
             <div className="text-xl px-2">
               <ul className="list-disc font-semibold">
-                <li>One to One Sessions</li>
                 <li>Basic to Advanced Level</li>
+                <li>One to One Sessions</li>
                 <li>Weekly Live Sessions</li>
                 <li>Access to Premium Community</li>
-                <li>Extra 6 Month Assistance</li>
+                <li>2 Month Duration,Extra 3 Month Assistance</li>
                 <li>Sessions-Pre-Recorded Videos(Lifetime Access)</li>
                 <li>24 Hours Support</li>
               </ul>
@@ -209,8 +222,8 @@ const Courses = () => {
               <div className="text-red-600 font-bold line-through">$539</div>
               <div className="font-bold text-2xl">$479</div>
             </div>
-            <div className="text-xl font-semibold my-2">Limited seats only!!</div>
-            <Button onClick={()=>handleSubmit({course: 'live-mentorship',amount:'$479'})} icon={<RightCircleOutlined />} className="my-2 border border-green-400">Purchase and Join Now</Button>
+            <div className="text-xl font-semibold my-2 text-red-600">No seats available!!</div>
+            <Button loading={loading.two} onClick={()=>handleSubmit({course: 'live-mentorship',amount:479})} icon={<RightCircleOutlined />} className="my-2 border border-green-400">Purchase and Join Now</Button>
           </div>
         </div>
       </section>
@@ -218,7 +231,7 @@ const Courses = () => {
       <Footer/>
       {isModalOpen && <Modal 
       isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} 
-      formData={formData} setFormData={setFormData} LoadPhonepe={LoadPhonepe}/>}
+      formData={formData} setFormData={setFormData} submitPurchase={submitPurchase}/>}
     </>
   )
 }

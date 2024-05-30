@@ -6,6 +6,8 @@ import Users from '../Pages/Admin/User'
 // import Course from '../Pages/Admin/Course'
 import { useSelector } from 'react-redux'
 import NotFoundPage from '../Pages/404'
+import Sales from '../Pages/Admin/Sales'
+import Login from '../Pages/Admin/Login'
 
 const Admin = () => {
 //   const adminAuth = useSelector((state) => state.Admin.token)
@@ -17,9 +19,13 @@ const Admin = () => {
         {/* <Route path='/login' element={adminAuth? <Navigate to={'/twc/admin'}/> : <Login />}/> */}
 
         {/* Private */}
+        <Route path='/login'
+        element={<Login/>}/>
         <Route path='/users' 
         // element={<PrivateRoute element={<Users/>}/>}
         element={<Users/>}/>
+        <Route path='/sales'
+        element={<Sales/>}/>
 
         {/* <Route path='/sales' element={<PrivateRoute element={<Sales/>}/>}/>
         <Route path='/course' element={<PrivateRoute element={<Course/>}/>}/>
