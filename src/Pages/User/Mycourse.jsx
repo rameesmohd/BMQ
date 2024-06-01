@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Navbar from '../../Components/User/Navbar'
-// import Footer from '../../Components/Common/Footer'
 import {Button, Card, Flex} from 'antd'
 import userAxios from '../../Axios/Useraxios'
 import {toast} from 'react-hot-toast'
@@ -8,12 +7,10 @@ import {CheckOutlined, LockOutlined, UnlockOutlined  } from '@ant-design/icons'
 import { Skeleton } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import Classroom from './Classroom'
-// import Congrates from '../../Components/Common/Congrates'
 import { Progress } from 'antd';
 import { useNavigate } from 'react-router-dom'
 import { setUser ,addCompletedChapter} from '../../Redux/UserSlice'
-// import { setFullData } from '../../Redux/CourseSlice'
-// import {logout} from '../../Redux/ClientSlice'
+
 
 const Mycourse = () => {
   const [ course,setCourse ]=useState([])
@@ -34,17 +31,17 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "2q3p4o5n-6m7l-8k9j-0i1h-2g3f4e5d6c7b",
-            lessonVideoUrl: "https://www.youtube.com/embed/0zMb1y-h5EQ?si=PftdS5v8XZTJTJoG"
+            lessonVideoUrl: "https://player.vimeo.com/video/952645734?h=c489c2b78e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
-          {
+      {
         _id: "3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r",
-        title: "Currencies and using of Mt4 in Forex Trading",
+        title: "Currencies in Forex Trading",
         lesson: [
           {
             _id: "3r4q5p6o-7n8m-9l0k-1j2i-3h4g5f6e7d8c",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://youtu.be/Dj5TCsA_7aI"
           }
         ]
       },
@@ -54,7 +51,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "4s5r6q7p-8o9n-0m1l-2k3j-4i5h6g7f8e9d",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://youtu.be/-bQilG5ibqQ"
           }
         ]
       },
@@ -64,7 +61,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "5t6s7r8q-9p0o-1n2m-3l4k-5j6i7h8g9f0e",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://youtu.be/W_Pzy2RHZGU"
           }
         ]
       },
@@ -74,7 +71,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "6u7t8s9r-0q1p-2o3n-4m5l-6k7j8i9h0g1f",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://youtu.be/HEQlNAApPKs"
           }
         ]
       },
@@ -84,7 +81,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "7v8u9t0s-1r2q-3p4o-5n6m-7l8k9j0i1h2g",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://youtu.be/qVbGqK6zyos"
           }
         ]
       },
@@ -94,7 +91,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "8w9v0u1t-2s3r-4q5p-6o7n-8m9l0k1j2i3h",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://youtu.be/1ZANnmMZPv4"
           }
         ]
       },
@@ -104,19 +101,17 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "9x0w1v2u-3t4s-5r6q-7p8o-9n0m1l2k3j4i",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952689560?h=4a894f1340&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
-      //----------------------
-
       {
         _id: "8ffd4c10-f908-49c0-9b8e-4d29940e9956",
         title: "Candlesticks",
         lesson: [
           {
             _id: "af822c5d-8851-4472-80b4-02225de2d067",
-            lessonVideoUrl: "https://player.vimeo.com/video/910364289?h=050531d1bd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952689738?h=09eb984fd4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
@@ -126,7 +121,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "f1721ad2-0b34-46f3-97cb-0adfb1c6e0a6",
-            lessonVideoUrl: "https://player.vimeo.com/video/910365429?h=3ace4709c9&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952708556?h=3e860baa35&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
@@ -136,7 +131,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "1p2o3n4m-5l6k-7j8i-9h0g-1f2e3d4c5b6a",
-            lessonVideoUrl: "https://player.vimeo.com/video/910385164?h=2830fcf9bf&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952689667?h=6924bfbeaa&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
@@ -146,7 +141,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "2q3r4s5t-6u7v-8w9x-0y1z-2a3b4c5d6e7f",
-            lessonVideoUrl: "https://player.vimeo.com/video/910375290?h=12345678abcd&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952689618?h=9094afa5d7&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
@@ -156,7 +151,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "3r4s5t6u-7v8w-9x0y-1z2a-3b4c5d6e7f8g",
-            lessonVideoUrl: "https://player.vimeo.com/video/910376301?h=23456789bcde&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952689477?h=2ef6d59ca4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
@@ -166,7 +161,7 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "4s5t6u7v-8w9x-0y1z-2a3b-4c5d6e7f8g9h",
-            lessonVideoUrl: "https://player.vimeo.com/video/910377312?h=3456789cdef0&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952689367?h=f62db8308e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
@@ -176,12 +171,10 @@ const Mycourse = () => {
         lesson: [
           {
             _id: "5t6u7v8w-9x0y-1z2a-3b4c-5d6e7f8g9h0i",
-            lessonVideoUrl: "https://player.vimeo.com/video/910378323?h=4567890def12&badge=0&autopause=0&player_id=0&app_id=58479"
+            lessonVideoUrl: "https://player.vimeo.com/video/952703274?h=7b594e3b1d&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           }
         ]
       },
-
-      //-------------------------------
       {
         _id: "8ffd4c10-f908-49c0-9b8e-4d29940e9956",
         title: "Orderblocks",
@@ -421,12 +414,7 @@ const Mycourse = () => {
         ]
       },
   ];
-    
-  const signout=async()=>{
-    await axiosInstance.patch('/logout',{id : userId})
-    dispatch(logout())
-  }
-
+  
   console.log(course_data);
 
   const handleChapterComplete=async()=>{
