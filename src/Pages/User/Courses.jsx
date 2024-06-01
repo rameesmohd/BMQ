@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Navbar from '../../Components/User/Navbar'
+import Nav from '../../Components/User/Navbar'
 import { Button, Card, Checkbox ,notification,message} from 'antd'
 import Footer from '../../Components/User/Footer'
 import { RightCircleOutlined, SmileOutlined } from '@ant-design/icons'
@@ -108,7 +108,7 @@ const Courses = () => {
 
   return (
     <>
-      <Navbar />
+      <Nav />
       <div
         className="container mx-auto pt-28 pb-1"
         style={{
