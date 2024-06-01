@@ -1,18 +1,21 @@
 import { useState } from 'react'
-import Home from './pages/Home'
-import { BrowserRouter,Routes , Route } from 'react-router-dom'
-import Courses from './pages/Courses'
+import { BrowserRouter,Route,Routes } from 'react-router-dom'
+import UserRoutes from './Routes/User'
+import AdminRoutes from './Routes/Admin'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
+
   return (
     <>
-    <BrowserRouter>
+      <BrowserRouter>
+      <div><Toaster
+       position="top-center"
+       reverseOrder={false}
+      /></div>
       <Routes>
-        <Route>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/courses" element={<Courses />} />
-        </Route>
+        <Route path="/admin/*" element={<AdminRoutes/>} />
+        <Route path="/*" element={<UserRoutes />} />
       </Routes>
     </BrowserRouter>
     </>
