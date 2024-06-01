@@ -118,7 +118,7 @@ const Courses = () => {
       >
         <div className="text-4xl text-center py-6">Our Courses</div>
         <hr />
-        <section className="grid grid-cols-3 px-10 border">
+        <section className="sm:grid grid-cols-3 px-10 border animate-fade-up">
           <div className="p-10">
             <Card
               hoverable
@@ -130,13 +130,16 @@ const Courses = () => {
                 />
               }
             >
-              <div className="text-2xl my-2 font-bold">Ultimate Trading Mastery</div>
-              <div className="text-xl font-semibold">Basic to Advanced Level Learning</div>
+              <div className="text-2xl my-2 font-bold">Ultimate Trading Masterclass</div>
+              <div className="text-xl font-semibold">Learning from beginner to professional level.</div>
               <ul className="">
-                <li className="my-1 border p-2 ">Total Hours: 16 Hours</li>
+              <li className="my-1 border p-2">Basic to Advanced Technical Analysis</li>
                 <li className="my-1 border p-2">Sessions-Pre-Recorded videos (12 Hours)</li>
                 <li className="my-1 border p-2">3 Month Access</li>
+                <li className="my-1 border p-2 ">Total Hours: 16 Hours</li>
+                <li className="my-1 border p-2">34 Lessons with 2 Core strategies</li>
                 <li className="my-1 border p-2">Daily Analysis Broadcast</li>
+                <li className="my-1 border p-2">Daily tasks with guidance</li>
                 {/* <li className="my-1 border p-2 flex justify-between">
                   2 Live session (4 Hours)<Checkbox checked={formData.support} onChange={handleCheckboxChange} />
                 </li> */}
@@ -162,7 +165,6 @@ const Courses = () => {
                 <div className="py-2">
                   <div className="text-3xl mb-2 font-semibold">About the course</div>
                   <p className="text-lg my-2">
-                    Mastering Trading Essentials,
                     Unlock the secrets of successful trading with our comprehensive course on indicators, liquidity, market structure,
                     and market maker concepts. Whether you're a beginner or an experienced trader, this course will equip you with the knowledge
                     and strategies to navigate the financial markets confidently.
@@ -179,11 +181,9 @@ const Courses = () => {
       </div>
 
       <section
-        className="container grid grid-cols-2 mx-auto p-10 bg-green-100 border"
-        // style={{ backgroundImage: 'url("https://fundednext.fra1.cdn.digitaloceanspaces.com/cta-btn-bg.webp")', backgroundSize: '100%' }}
+        className="container sm:grid grid-cols-2 mx-auto p-10 bg-green-100 border"
       >
-        <div>
-          <div className="text-3xl font-extrabold text-black my-2">ELITE TRADERS MENTORSHIP PROGRAM</div>
+        <div className='animate-fade-right'>
           <div>
             <img
               src="https://www.choruscallaustralia.com.au/wp-content/uploads/2018/11/best-practice-video-call.jpg"
@@ -192,20 +192,24 @@ const Courses = () => {
             />
           </div>
         </div>
-        <div className="p-10">
+        <div className="p-10 animate-fade-left">
           <div className="text-3xl font-bold">
             Beat Market Edu's <br/>
-            Elite Traders Live Mentorship Program
+            Elite Traders Mentorship Program
           </div>
           <br />
           <div className="text-lg">
-            Elite Traders Live Mentorship Program is not just another trading course. It is an online program that allows any
+            {/* Elite Traders Live Mentorship Program is not just another trading course. It is an online program that allows any
             beginner or experienced trader to build a trading system from scratch, learning everything about
             trading in the most simplified manner. This course, offered through our online share market classes,
-            covers essential aspects every trader needs to know to succeed in the markets.
+            covers essential aspects every trader needs to know to succeed in the markets. */}
           </div>
+            <div className="flex items-center space-x-2">
+              <div className="text-red-600 font-bold line-through">$539</div>
+              <div className="font-bold text-2xl">$479</div>
+            </div>
           <div className="my-2 bg-opacity-20 backdrop-blur-lg bg-white/10 p-6 rounded-md">
-            <div className="text-xl px-2">
+            <div className="text-xl px-2 ">
               <ul className="list-disc font-semibold">
                 <li>Basic to Advanced Level</li>
                 <li>One to One Sessions</li>
@@ -218,10 +222,6 @@ const Courses = () => {
             </div>
           </div>
           <div className="flex justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="text-red-600 font-bold line-through">$539</div>
-              <div className="font-bold text-2xl">$479</div>
-            </div>
             <div className="text-xl font-semibold my-2 text-red-600">No seats available!!</div>
             <Button loading={loading.two} onClick={()=>handleSubmit({course: 'live-mentorship',amount:479})} icon={<RightCircleOutlined />} className="my-2 border border-green-400">Purchase and Join Now</Button>
           </div>

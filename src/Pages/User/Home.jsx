@@ -5,6 +5,8 @@ import { RightOutlined } from '@ant-design/icons'
 import imageSection1 from '../../assets/3-Month-Journey-.png'
 import Collapse from '../../Components/Common/Collapase'
 import Footer from '../../Components/User/Footer'
+import { useNavigate } from 'react-router-dom'
+import Rating from '../../Components/Common/Rating'
 
 const Home = () => {
   const whatYouWillLearn = [
@@ -30,7 +32,7 @@ const Home = () => {
 
   
 const InfoSection = ({ title, content }) => (
-  <div className="w-full h-full my-2 px-10">
+  <div className="w-full h-full my-2 px-10 animate-fade-up">
     <SectionHeader>{title}</SectionHeader>
     <p>{content}</p>
   </div>
@@ -50,13 +52,14 @@ const ListSection = ({ title, items }) => (
   </div>
 );
 
+const navigate = useNavigate()
 
   return (
     <>
       <Navbar />
       <div style={{ backgroundImage: 'url("https://bitrader.thetork.com/wp-content/uploads/2023/10/banner_bg.png")' }}>
         <div className="container mx-auto">
-          <section className="grid grid-cols-3 gap-1 pt-24">
+          <section className="sm:grid grid-cols-3 gap-1 pt-24">
             <div className="col-span-2 p-10 flex justify-center">
               <iframe
                 width="560"
@@ -70,7 +73,7 @@ const ListSection = ({ title, items }) => (
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="col-span-1 p-10">
+            <div className="col-span-1 p-10 animate-fade-left">
               <h2 className="text-6xl">
                 WHAT IF I CAN TEACH YOU <span className="text-green-500">BASICS TO ADVANCED</span> TRADING RIGHT NOW?
               </h2>
@@ -79,15 +82,15 @@ const ListSection = ({ title, items }) => (
               </p>
             </div>
           </section>
-          <section className="grid grid-cols-2 gap-1 bg-slate-200 p-10">
-            <div className="col-span-1 p-10">
-              <h2 className="text-6xl">IT’S TIME TO TAKE TRADING SERIOUSLY WITH THE 8-WEEK TRADING PROGRAM</h2>
+          <section className="sm:grid grid-cols-2 gap-1 bg-slate-200 p-10 ">
+            <div className="col-span-1 p-10 animate-fade-right">
+              <h2 className="text-6xl ">IT’S TIME TO TAKE TRADING SERIOUSLY WITH THE 8-WEEK TRADING PROGRAM</h2>
               <p className="my-2">
                 We will walk you through the steps to make a trade profitable. With each trade being different, you have to understand how the market works to select a performing trade. This is exactly what you will learn with BeatMarketEdu.
               </p>
-              <Button> Get Access Now <RightOutlined /></Button>
+              <Button onClick={()=>navigate('/courses')}> Get Access Now <RightOutlined /></Button>
             </div>
-            <div className="col-span-1 flex justify-center">
+            <div className="col-span-1 flex justify-center animate-fade-left">
               <img src={imageSection1} className="max-h-96 bg-slate-200" alt="Journey" />
             </div>
           </section>
@@ -96,16 +99,24 @@ const ListSection = ({ title, items }) => (
 
       <div className="container mx-auto">
         <section className="w-full py-10">
-          <div className="bg-slate-50 w-full h-full px-10 py-2">
+          <div className="bg-slate-50 w-full h-full px-10 py-2 animate-fade-up">
             <SectionHeader>What is beatmarketedu?</SectionHeader>
             <p>
-              Urban Forex is an online platform created by Navin Prithyani so he can share his knowledge in trading. <br />
-              Navin created powerful online video programs in which you can learn how to trade using price action (without indicators).
+              Beat Market Edu is an online platform created by Rameex.fx so he can share his knowledge in trading. <br />
+              The Beatmarketedu is designed for,Any new trader who wants to start trading the right way. Any experienced trader who hasn't found yet the 
+              correct method to turn profitable. Any profitable trader who would like an additional tool to understand how the market works.
+              
             </p>
           </div>
           <InfoSection
+            
             title="What is BMQ Strategy?"
-            content="Any new trader who wants to start trading the right way. Any experienced trader who hasn't found yet the correct method to turn profitable. Any profitable trader who would like an additional tool to understand how the market works."
+            content="
+            The BMQ Strategy combines the world's best trading strategies to 
+            create a successful and comprehensive approach. By analyzing the markets from different 
+            perspectives and employing various strategies, we ensure high-probability trade decisions. BMQ incorporates multiple core strategies, 
+            including Market Structure (MS), Liquidity Concepts,Market Maker Concepts and various indicators to enhance confirmation and accuracy in trades.
+            "
           />
         </section>
         <hr />
@@ -125,14 +136,36 @@ const ListSection = ({ title, items }) => (
         </section>
         <section>
           <div className="w-full text-center text-3xl mt-6">BeatMarketEdu Students Reviews</div>
-          <div className="grid grid-cols-5 p-10 gap-1">
-            <div className="bg-green-500 col-span-1 rounded-xl p-10">sdfsdfd</div>
-            <div className="bg-green-500 col-span-2 p-4 rounded-xl">sdfsdfd</div>
-            <div className="bg-green-500 col-span-1 rounded-xl">sdfsdfd</div>
-            <div className="bg-green-500 col-span-1 rounded-xl">sdfsdfd</div>
+          <div className="sm:grid grid-cols-5 p-10 gap-1">
+            <div className="bg-green-400 col-span-1 rounded-xl my-2 p-2 ">
+              <div className='flex justify-between font-bold'>
+                Mohammed Naji
+                <Rating rate={4.8}/>
+              </div>
+              "I finally found a strategy that works for me. The integration of your unique concepts gives me the confidence to trade more effectively."
+            </div>
+            <div className="bg-green-400 col-span-1 p-4 rounded-xl my-2">
+            <div className='flex justify-between font-bold'>
+                Deepak.M
+                <Rating rate={4.6}/>
+              </div>
+              "Highly impressed with this course! It's transformed my trading abilities, I wholeheartedly recommend it to anyone serious about trading."
+              </div>
+            <div className="bg-green-400 col-span-2 p-4 rounded-xl my-2"> 
+            <div className='flex justify-between font-bold'>
+                Jins Joy
+                <Rating rate={4.7}/>
+              </div>
+                Your course completely transformed my trading approach. The combination of your strategies provides a solid foundation for making smart decisions and taking high probability trades.Thankyou </div>
+            <div className="bg-green-400 col-span-1 p-4 rounded-xl my-2">
+            <div className='flex justify-between font-bold'>
+                Vyshak 
+                <Rating rate={4.7}/>
+              </div>
+              This course exceeded my expectations. Now, I'm confident in my trading abilities. Highly recommended!</div>
           </div>
           <div className="bg-slate-50 p-3 flex justify-center">
-            <Button className="bg-green-400 text-black">Become a Successful Trader</Button>
+            <Button onClick={()=>navigate('/courses')} className="bg-green-400 text-black">Become a Successful Trader</Button>
           </div>
         </section>
         <section className="py-10">

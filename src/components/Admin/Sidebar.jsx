@@ -1,26 +1,26 @@
 import React from 'react'
 import { useEffect } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 // import { setMobileViewMenuToggler } from '../../Redux/AdminAuth'
 import { Button, message, Popconfirm } from 'antd';
-// import {logout} from '../../Redux/AdminSclice'
+import {logout} from '../../Redux/Adminslice'
 import {PoweroffOutlined} from '@ant-design/icons'
 
 
 const Sidebar = () => {
 const location = useLocation()
 const navigate = useNavigate()
-// const dispatch = useDispatch()
+const dispatch = useDispatch()
 // const mobileView = useSelector((store)=>store.Admin.mobileView)
 
 let mobileView = true;
 const confirm = (e) => {
 	console.log(e);
-	// dispatch(logout())
-	// navigate('/admin/login')
+	dispatch(logout())
+	navigate('/admin/login')
 };
 
 const cancel = (e) => {

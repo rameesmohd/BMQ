@@ -12,6 +12,7 @@ const { RangePicker } = DatePicker;
 
 const sales = () => {
   const axiosInstance = adminAxios()
+  
   const [salesData,setSalesData]=useState([])
   const [loading,setloading] = useState(false)
   const [reloaded,setReloaded] = useState(false)

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {Button, Drawer} from 'antd'
-// import logo from '../assets/Logo-New-2.png'
+import { useSelector } from 'react-redux';
+import logo from '../../assets/Beat (3) copy.png'
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const token = 'true'
-    // useSelector((state)=>state.Client.token)
-    
+    const token = useSelector((state)=>state.Client.token)
+    const navigate = useNavigate()
   
     const signout=()=>{
       dispatch(logout())
@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <>
     <nav className="bg-opacity-10 backdrop-blur-lg bg-black/10 border-gray-200 shadow-xl fixed z-50 w-full px-4 ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-end mx-auto ">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <button
           onClick={toggleMobileMenu}
           type="button"
@@ -50,9 +50,12 @@ const Navbar = () => {
             />
           </svg>
         </button>
+          <Link to={'/'} className="flex items-center space-x-3 rtl:space-x-reverse">
+              <img src={logo} className='max-w-36 my-2' alt="" />
+          </Link>
 
         <div className={`py-1 w-full md:block md:w-auto transition ${isMobileMenuOpen ? "block" : "hidden"}`} id="navbar-default">
-          <ul className="font-medium md:flex flex-col p-4 md:p-0 mt-4 border items-center border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
+          <ul className="font-medium md:flex flex-col p-4 md:p-0 mt-4 border  items-center border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             {options.map((obj, index) => (
               <li key={index}>
                 <Link
@@ -63,40 +66,17 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            {token ? (
+          
               <>
               <li>
-                <Button className="text-white bg-green-400">My Courses</Button>
+                <Button onClick={()=>navigate('/login')} className="text-white bg-green-400">My Courses</Button>
               </li>
               </>
-            ) : (
-              <>
-                <li>
-                  <Drawer btnText={'Login'} 
-                  btnClassname={'bg-transparent border-blue-500 border my-1 '}
-                //   Body={<Loginform/>}
-                  />
-                   <Drawer btnText={'Signup'} 
-                  btnClassname={'bg-blue-500 border text-white mx-1 my-1 '}
-                //   Body={<Signupfrom/>}
-                  />
-                </li> 
-              </>
-            )}
+          
           </ul>
         </div>
-        <div className='flex justify-center w-full border-t border-slate-200'>
-        <Link to={'/'} className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="self-center text-xl font-semibold whitespace-nowrap text-blue-800">
-            {/* <img src={logo} alt="" className="w-40 h-26 absolute -top-1" /> */}
-            <div className='my-1'>
-              <span className='text-green-400'> 
-                BEATMARKET
-                </span> 
-                EDU</div>
-          </span>
-        </Link>
-        </div>        
+    
+             
       </div>
     </nav>
     </>

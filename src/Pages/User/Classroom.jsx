@@ -4,11 +4,12 @@ import { ArrowLeftOutlined, CheckCircleOutlined, LeftOutlined, LockOutlined, Rig
 
 const Classroom = ({chapter,goBack,chapterIndex,handleChapterComplete}) => {
     const [selectedLessonIndex,setSelectedLessonIndex]=useState(0)
-    const [selectedLesson,setSelectedLesson]=useState(chapter.lessons[selectedLessonIndex])
+    const [selectedLesson,setSelectedLesson]=useState(chapter.lesson[selectedLessonIndex])
     const [ifromeLoading,setIframeLoading]=useState({
         main : true,
         list : true
     })
+
     const handleSelectLesson=(lesson ,index)=>{
         setSelectedLessonIndex(index)
         setIframeLoading({...ifromeLoading , main : true})
@@ -23,7 +24,7 @@ const Classroom = ({chapter,goBack,chapterIndex,handleChapterComplete}) => {
     }
 
     useEffect(()=>{
-        setSelectedLesson(chapter.lessons[selectedLessonIndex])
+        setSelectedLesson(chapter.lesson[selectedLessonIndex])
     },[selectedLessonIndex])
   return (
     <>
@@ -66,17 +67,17 @@ const Classroom = ({chapter,goBack,chapterIndex,handleChapterComplete}) => {
                 <Flex justify='space-between' className='px-4 pb-4'>
                         <Button onClick={handlePrev} icon={<LeftOutlined />} align="center" size='large' style={{ width: '50px' ,backgroundColor : 'black' ,color : 'white'}}/>          
                     { 
-                        selectedLesson?._id != chapter.lessons[chapter.lessons.length-1]?._id &&
+                        selectedLesson?._id != chapter.lesson[chapter.lesson.length-1]?._id &&
                         <Button onClick={handleNext} icon={<RightOutlined />} align="center" size='large' style={{ width: '50px' ,backgroundColor : 'black' ,color : 'white'}}/> 
                     }
                     {
-                         selectedLesson?._id === chapter.lessons[chapter.lessons.length-1]?._id &&
+                         selectedLesson?._id === chapter.lesson[chapter.lesson.length-1]?._id &&
                         <Button onClick={handleChapterComplete} icon={<CheckCircleOutlined />} align="center" size='large' style={{ backgroundColor : 'black' ,color : 'white'}}>Completed</Button>
                     }
                 </Flex>
             </div>
             <div className='col-span-2 '>
-            {chapter.lessons.map((lesson,i)=>
+            {chapter.lesson.map((lesson,i)=>
                 <Card onClick={()=>handleSelectLesson(lesson,i)} className={`animate-flip-up mb-1 ${selectedLesson._id === lesson._id && 'bg-slate-300'}`} hoverable>
                    <div style={{ position: 'relative' }}>
                         {ifromeLoading.list && (

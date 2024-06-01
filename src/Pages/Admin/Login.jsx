@@ -5,23 +5,27 @@ import { Card } from 'antd';
 import Adminaxios from '../../Axios/Adminaxios'
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-const App = () => {
-const axiosInstance = Adminaxios()
-const navigate = useNavigate()
+import { useDispatch } from 'react-redux';
+import {setToken} from '../../Redux/Adminslice'
 
-const onFinish = async(values) => {
-try {
-        console.log('Received values of form: ', values);
-        const response = await axiosInstance.post('/login',values)
-        console.log("Server response:", response.data);
-        if(response){
-            navigate('/admin/users')
-        }    
-    } catch (error) {
-        toast.error(error.message)
-        toast.error(error.data.response.data.message)
-    }
-}
+const App = () => {
+  const axiosInstance = Adminaxios()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const onFinish = async(values) => {
+  try {
+          console.log('Received values of form: ', values);
+          const response = await axiosInstance.post('/login',values)
+          console.log("Server response:", response.data);
+          dispatch(setToken(response.data.token))
+          if(response){
+              navigate('/admin/users')
+          }    
+      } catch (error) {
+          toast.error(error.message)
+          toast.error(error.data.response.data.message)
+      }
+  }
 
   return (
     <div className='w-full h-screen container mx-auto flex justify-center items-center'>
@@ -65,14 +69,14 @@ try {
           type="password"
           placeholder="Password"
           />
-      </Form.Item>
-      <Form.Item>
-      </Form.Item>
-      <Form.Item className='text-center'>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-      </Form.Item>
+        </Form.Item>
+        <Form.Item>
+        </Form.Item>
+        <Form.Item className='text-center'>
+          <Button type="primary" htmlType="submit" className="login-form-button">
+            Log in
+          </Button>
+        </Form.Item>
     </Form>
     </Card>
     </div>

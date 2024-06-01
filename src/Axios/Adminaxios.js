@@ -1,10 +1,9 @@
 import axios from 'axios';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const userAxios = () => {
-  const token = null
-  //   useSelector((store) => store.Client.token);
-  
+  const token = useSelector((store) => store.Admin.token);
+  console.log(token);
   const userAxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_ADMIN_API,
     withCredentials: true,
@@ -27,3 +26,4 @@ const userAxios = () => {
 };
 
 export default userAxios;
+

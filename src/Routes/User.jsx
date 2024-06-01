@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import Home from '../Pages/User/Home'
 import { Routes , Route, Navigate } from 'react-router-dom'
 import Mycourse from '../Pages/User/Mycourse'
@@ -16,11 +16,11 @@ function App() {
     <>
       <Routes>
         <Route>
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/login" element={<Login />} />
-
+          <Route path="/courses" element={<Courses />} /> */}
+          
+          <Route path="/login" element={userAuth? <Mycourse/> : <Login />} />
           {/* Private */}
           <Route path="/my-course" element={<PrivateRoute element={<Mycourse/>}/>} />
         </Route>
