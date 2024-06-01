@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {Button, Drawer} from 'antd'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/Beat (3) copy.png'
+import { logout } from '../../Redux/UserSlice';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const token = useSelector((state)=>state.Client.token)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
   
     const signout=()=>{
@@ -68,9 +70,15 @@ const Navbar = () => {
             ))}
           
               <>
+              {
+                token ? 
+              <li>
+                <Button onClick={()=>signout()} className="text-white bg-green-400"> Logout </Button>
+              </li> : 
               <li>
                 <Button onClick={()=>navigate('/login')} className="text-white bg-green-400">My Courses</Button>
-              </li>
+              </li> 
+              }
               </>
           
           </ul>
