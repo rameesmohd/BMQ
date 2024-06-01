@@ -4,17 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-// import { setMobileViewMenuToggler } from '../../Redux/AdminAuth'
 import { Button, message, Popconfirm } from 'antd';
 import {logout} from '../../Redux/Adminslice'
 import {PoweroffOutlined} from '@ant-design/icons'
 
 
-const Sidebar = () => {
+const App = () => {
 const location = useLocation()
 const navigate = useNavigate()
 const dispatch = useDispatch()
-// const mobileView = useSelector((store)=>store.Admin.mobileView)
 
 let mobileView = true;
 const confirm = (e) => {
@@ -89,4 +87,4 @@ return (
 )
 }
 
-export default Sidebar
+export default App
