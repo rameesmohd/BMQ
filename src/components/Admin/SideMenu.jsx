@@ -9,22 +9,21 @@ import {logout} from '../../Redux/Adminslice'
 import {PoweroffOutlined} from '@ant-design/icons'
 
 
-const App = () => {
-const location = useLocation()
-const navigate = useNavigate()
-const dispatch = useDispatch()
+export const Sidebar = () => {
+	const location = useLocation()
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
 
-let mobileView = true;
-const confirm = (e) => {
-	console.log(e);
-	dispatch(logout())
-	navigate('/admin/login')
-};
+	let mobileView = true;
+	const confirm = (e) => {
+		console.log(e);
+		dispatch(logout())
+		navigate('/admin/login')
+	};
 
-const cancel = (e) => {
-	
-};
-
+	const cancel = (e) => {
+		
+	};
 return (
 <>
 <div className="flex flex-col items-center h-screen fixed z-50">
@@ -86,5 +85,3 @@ return (
 </>
 )
 }
-
-export default App
