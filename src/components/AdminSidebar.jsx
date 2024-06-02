@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { Button, message, Popconfirm } from 'antd';
-import {logout} from '../../Redux/Adminslice'
+import {logout} from '../Redux/Adminslice'
 import {PoweroffOutlined} from '@ant-design/icons'
 
 const Sidebar = () => {
