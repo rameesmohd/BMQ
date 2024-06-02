@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Sidebar as Sidemenu} from '../../Components/Admins/Sidemenu.jsx'
+import Sidebar from '../../Components/Admins/Sidebar'
 import { Button, Divider, Popconfirm, Table } from 'antd';
 import Dropdownbtn from '../../Components/Common/Dropdownbtn'
 import SearchInput from '../../Components/Common/SearchInput'
@@ -155,7 +155,7 @@ const Users = () => {
 
   return (
     <div>
-      <Sidemenu/>
+      <Sidebar/>
       <div className='pl-16 md:pl-40'>
         <div className=' py-8 px-2 sm:px-8'>
         <Divider orientation="left" style={{fontSize : '30px'}}>Our Users</Divider>

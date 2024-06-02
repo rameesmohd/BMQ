@@ -8,8 +8,7 @@ import { Button, message, Popconfirm } from 'antd';
 import {logout} from '../../Redux/Adminslice'
 import {PoweroffOutlined} from '@ant-design/icons'
 
-
-export const Sidebar = () => {
+const Sidebar = () => {
 	const location = useLocation()
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
@@ -85,3 +84,4 @@ return (
 </>
 )
 }
+ export default Sidebar
