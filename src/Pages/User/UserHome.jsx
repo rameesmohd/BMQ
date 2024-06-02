@@ -3,10 +3,10 @@ import Navbar from '../../Components/UserNavbar.jsx';
 import { Button } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import imageSection1 from '../../assets/3-Month-Journey-.png'
-import Collapse from '../../Components/Common/Collapase'
+import Collapse from '../../Components/Common/Collapase.jsx'
 import Footer from '../../Components/Users/Footer.jsx'
 import { useNavigate } from 'react-router-dom'
-import Rating from '../../Components/Common/Rating'
+import Rating from '../../Components/Common/Rating.jsx'
 
 const Home = () => {
   const whatYouWillLearn = [
