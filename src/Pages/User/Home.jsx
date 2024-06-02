@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../../Components/UserCom/Nav.jsx'
+import Navbar from '../../Components/Users/Usernav.jsx'
 import { Button } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import imageSection1 from '../../assets/3-Month-Journey-.png'
 import Collapse from '../../Components/Common/Collapase'
-import Footer from '../../Components/UserCom/Footer.jsx'
+import Footer from '../../Components/Users/Footer.jsx'
 import { useNavigate } from 'react-router-dom'
 import Rating from '../../Components/Common/Rating'
 

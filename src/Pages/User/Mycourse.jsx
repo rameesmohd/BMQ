@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import Navbar from '../../Components/UserCom/Nav'
+import Navbar from '../../Components/Users/Usernav.jsx'
 import {Button, Card, Flex} from 'antd'
 import userAxios from '../../Axios/Useraxios'
 import {toast} from 'react-hot-toast'
