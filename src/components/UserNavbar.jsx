@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import {Button, Drawer} from 'antd'
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/Beat (3) copy.png'
-import { logout } from '../../Redux/UserSlice';
+import { logout } from '../Redux/UserSlice';
 
  const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
