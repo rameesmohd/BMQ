@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../Components/User/Nav'
+import Navbar from '../../Components/User/Nav.jsx'
 import { Button } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import imageSection1 from '../../assets/3-Month-Journey-.png'
