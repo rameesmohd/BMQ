@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/Beat (3) copy.png'
 import { logout } from '../../Redux/UserSlice';
 
-export const Nav = () => {
+ const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const token = useSelector((state)=>state.Client.token)
     const dispatch = useDispatch()
@@ -91,3 +91,4 @@ export const Nav = () => {
   )
 }
 
+export default Navbar
