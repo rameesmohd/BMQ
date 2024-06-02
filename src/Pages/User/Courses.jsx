@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Navbar} from '../../Components/Usercom/Nav.jsx'
+import {Navbar} from '../../Components/Usercom/Navbar.jsx'
 import { Button, Card, Checkbox ,notification,message} from 'antd'
 import Footer from '../../Components/Usercom/Footer.jsx'
 import { RightCircleOutlined, SmileOutlined } from '@ant-design/icons'
