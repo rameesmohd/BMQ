@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import {Navbar} from '../../Components/Usercom/Navbar.jsx'
+import { Nav as Navbar} from '../../Components/Users/Navbar.jsx'
 import { Button, Card, Checkbox ,notification,message} from 'antd'
-import Footer from '../../Components/Usercom/Footer.jsx'
+import Footer from '../../Components/Users/Footer.jsx'
 import { RightCircleOutlined, SmileOutlined } from '@ant-design/icons'
 import userAxios from '../../Axios/Useraxios'
 import toast from 'react-hot-toast'
-import Modal from '../../Components/Usercom/PurchaseModal.jsx'
+import Modal from '../../Components/Users/PurchaseModal.jsx'
 import { setUser } from '../../Redux/UserSlice'
  
 const ListSection = ({ title, items }) => (
