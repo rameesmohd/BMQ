@@ -53,17 +53,23 @@ const Login = () => {
        }}
        onSubmit={async (values, { setSubmitting }) => {
         try {
-          const response = await axiosInstance.post("/login", {
-            email: values.email,
-            password: values.password
-          });
-          const result = response.data.result
-          console.log(result);
-          dispatch(setUser({
-              user_id : result.user_id,
-              token : result.token,
-          }))
-          navigate('/my-course');
+           // const response = await axiosInstance.post("/login", {
+          //   email: values.email,
+          //   password: values.password
+          // });
+          // const result = response.data.result
+          // console.log(result);
+
+          const email ='user123@gmail.com'
+          const password ='Qwerty007'
+
+          if(values.email == email && password == values.password){
+            dispatch(setUser({
+              user_id : '454534nnkn454k6lk345',
+              token : 'Bearer 454534nnkn454k6lk34565345knmn345jkl446klm345kl',
+            }))
+            navigate('/my-course');
+          } 
         } catch (error) {
           toast.error(error.response.data.message)
           setErrMsg(error.response.data.message)
