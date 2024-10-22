@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Sidebar from '../../Components/Admins/Sidebar'
+import Sidebar from '../../Components/Admin/Sidebar'
 import { Button, Divider, Flex, Modal, Popconfirm, Radio, Table, message } from 'antd';
 import Dropdownbtn from '../../Components/Common/Dropdownbtn'
 import SearchInput from '../../Components/Common/SearchInput'
